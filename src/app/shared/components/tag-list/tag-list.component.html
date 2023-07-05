@@ -1,0 +1,11 @@
+<ng-container *ngIf="data$ | async as data">
+  <app-error-message *ngIf="data.error" [error]="data.error" />
+  <div class="popular-tag-section">
+    <div><h3 class="tag-heading">Popular Tags</h3></div>
+    <mat-chip-listbox aria-label="Fish selection" (change)="navigate($event)">
+      <mat-chip-option *ngFor="let d of data.popularTags">{{
+        d
+      }}</mat-chip-option>
+    </mat-chip-listbox>
+  </div>
+</ng-container>

@@ -1,0 +1,62 @@
+<ng-container *ngIf="data$ | async as data">
+  <div *ngIf="data.error">{{ data.error }}</div>
+
+  <app-error-message *ngIf="data.error" [error]="data.error" />
+  <div *ngIf="data.feed">
+    <div class="card-container" *ngFor="let article of data.feed.articles">
+      <div class="card-title">
+        <div
+          class="profile-info"
+          [routerLink]="['/profiles', article.author.username]"
+        >
+          <div class="image-container">
+            <img
+              [src]="article.author.image"
+              alt="user-pic"
+              class="thumbnail"
+            />
+          </div>
+          <div class="profile-text">
+            <div class="user-name-text">{{ article.author.username }}</div>
+            <div class="feed-time">{{ article.createdAt }}</div>
+          </div>
+        </div>
+        <div>
+          <button
+            [ngClass]="article.favorited ? 'like-btn btn-selected' : 'like-btn'"
+            (click)="likePost()"
+          >
+            <mat-icon class="heart-icon">favorite</mat-icon>
+            {{ article.favoritesCount }}
+          </button>
+        </div>
+      </div>
+      <div [routerLink]="['/articles', article.slug]">
+        <h2>
+          {{ article.title }}
+        </h2>
+        <p>
+          {{ article.description }}
+        </p>
+      </div>
+      <div class="feed-footer">
+        <div>Read more...</div>
+
+        <mat-chip-listbox aria-label="Fish selection">
+          <mat-chip-option *ngFor="let t of article.tagList">{{
+            t
+          }}</mat-chip-option>
+        </mat-chip-listbox>
+      </div>
+      <mat-divider></mat-divider>
+    </div>
+
+    <div *ngIf="!data.feed.articles.length">No Feeds</div>
+  </div>
+  <app-pagination
+    [total]="data.feed!.articlesCount"
+    [limit]="limit"
+    [url]="apiUrl"
+    *ngIf="data.feed?.articles?.length"
+  ></app-pagination>
+</ng-container>

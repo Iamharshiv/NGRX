@@ -1,0 +1,14 @@
+.gf-container {
+  padding: 20px 20px;
+  height: auto;
+  .inner-container {
+    display: flex;
+    flex-direction: row;
+    // justify-content: space-between;
+    .tab-section {
+      width: 90%;
+      //   display: flex;
+      //   flex-grow: 2;
+    }
+  }
+}

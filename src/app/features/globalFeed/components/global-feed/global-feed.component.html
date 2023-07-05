@@ -1,0 +1,26 @@
+<app-banner></app-banner>
+<div class="gf-container">
+  <div class="inner-container">
+    <div class="tab-section">
+      <mat-tab-group
+        class="tab-section"
+        [selectedIndex]="tabIndex"
+        #demo3Tab
+        animationDuration="0ms"
+      >
+        <ng-container *ngFor="let t of tabsArray">
+          <ng-container *ngIf="t.isLoggedIn | async">
+            <mat-tab [label]="t.name">
+              <ng-template matTabContent>
+                <app-feed [apiUrl]="t.url"></app-feed>
+              </ng-template>
+            </mat-tab>
+          </ng-container>
+        </ng-container>
+      </mat-tab-group>
+    </div>
+
+    <app-tag-list (dynamicTab)="createDynamicTab($event)" />
+  </div>
+</div>
+<div class="footer"></div>

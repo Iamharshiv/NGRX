@@ -1,0 +1,15 @@
+.popular-tag-section {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(240, 240, 240);
+  padding: 0px 10px;
+  min-height: 200px;
+  border-radius: 5px;
+  flex-basis: 20em;
+  .tag-heading {
+    display: flex;
+    flex-direction: row;
+    height: 40px;
+    align-items: center;
+  }
+}
