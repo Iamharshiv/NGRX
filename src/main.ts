@@ -28,28 +28,31 @@ import {
   popularTagsFeatureKey,
   popularTagsReducer,
 } from './app/shared/components/tag-list/store/reducers';
+import { provideServiceWorker } from '@angular/service-worker';
 
 bootstrapApplication(AppComponent, {
   providers: [
     provideRouter(routes),
     provideStore({
-      router: routerReducer,
+        router: routerReducer,
     }),
     provideState(authFeatureKey, authReducer),
     provideState(feedFeatureKey, feedReducer),
     provideState(popularTagsFeatureKey, popularTagsReducer),
-
     provideEffects(authEffects, feedEffects, popularEffects),
     provideRouterStore(),
     provideStoreDevtools({
-      maxAge: 25,
-      logOnly: !isDevMode(),
-      autoPause: true,
-      trace: false,
-      traceLimit: 75,
+        maxAge: 25,
+        logOnly: !isDevMode(),
+        autoPause: true,
+        trace: false,
+        traceLimit: 75,
     }),
-
     importProvidersFrom(BrowserAnimationsModule),
     provideHttpClient(withInterceptors([authInterceptor, loadingInterceptor])),
-  ],
+    provideServiceWorker('ngsw-worker.js', {
+        enabled: !isDevMode(),
+        registrationStrategy: 'registerWhenStable:30000'
+    })
+],
 });
