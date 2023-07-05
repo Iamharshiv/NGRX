@@ -13,16 +13,16 @@ const popularTagsFeature = createFeature({
   name: 'popularTags',
   reducer: createReducer(
     initalState,
-    on(popularTagsActions.getPopulartags, (state) => ({
+    on(popularTagsActions.getPopularTags, (state) => ({
       ...state,
       isLoadding: true,
     })),
-    on(popularTagsActions.getPopulartagsSuccess, (state, action) => ({
+    on(popularTagsActions.getPopularTagsSuccess, (state, action) => ({
       ...state,
       isLoadding: false,
       data: action.popularTags.tags,
     })),
-    on(popularTagsActions.getPopulartagsFailure, (state) => ({
+    on(popularTagsActions.getPopularTagsFailure, (state) => ({
       ...state,
       isLoadding: false,
     }))

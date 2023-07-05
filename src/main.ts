@@ -34,7 +34,7 @@ bootstrapApplication(AppComponent, {
   providers: [
     provideRouter(routes),
     provideStore({
-        router: routerReducer,
+      router: routerReducer,
     }),
     provideState(authFeatureKey, authReducer),
     provideState(feedFeatureKey, feedReducer),
@@ -42,17 +42,21 @@ bootstrapApplication(AppComponent, {
     provideEffects(authEffects, feedEffects, popularEffects),
     provideRouterStore(),
     provideStoreDevtools({
-        maxAge: 25,
-        logOnly: !isDevMode(),
-        autoPause: true,
-        trace: false,
-        traceLimit: 75,
+      maxAge: 25,
+      logOnly: !isDevMode(),
+      autoPause: true,
+      trace: false,
+      traceLimit: 75,
     }),
     importProvidersFrom(BrowserAnimationsModule),
     provideHttpClient(withInterceptors([authInterceptor, loadingInterceptor])),
     provideServiceWorker('ngsw-worker.js', {
-        enabled: !isDevMode(),
-        registrationStrategy: 'registerWhenStable:30000'
-    })
-],
+      enabled: !isDevMode(),
+      registrationStrategy: 'registerWhenStable:30000',
+    }),
+    provideServiceWorker('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      registrationStrategy: 'registerWhenStable:30000',
+    }),
+  ],
 });

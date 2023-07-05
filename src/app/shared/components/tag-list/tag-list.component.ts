@@ -34,7 +34,7 @@ export class TagListComponent implements OnInit {
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    this.store.dispatch(popularTagsActions.getPopulartags());
+    this.store.dispatch(popularTagsActions.getPopularTags());
   }
 
   navigate(data: any) {

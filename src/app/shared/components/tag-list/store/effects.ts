@@ -14,14 +14,14 @@ export const getFeedEffect = createEffect(
     // persistentService = inject(PersistentService)
   ) => {
     return actions$.pipe(
-      ofType(popularTagsActions.getPopulartags),
+      ofType(popularTagsActions.getPopularTags),
       switchMap(() => {
         return popularTagService.getPopularTags().pipe(
           map((popularTags: IpopularTag) => {
-            return popularTagsActions.getPopulartagsSuccess({ popularTags });
+            return popularTagsActions.getPopularTagsSuccess({ popularTags });
           }),
           catchError(() => {
-            return of(popularTagsActions.getPopulartagsFailure());
+            return of(popularTagsActions.getPopularTagsFailure());
           })
         );
       })
