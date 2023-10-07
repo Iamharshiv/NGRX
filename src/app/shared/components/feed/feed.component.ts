@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { feedActions } from './store/actions';
@@ -12,11 +12,14 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { LoadingComponent } from '../loading/loading.component';
 import { ErrorMessageComponent } from '../error-message/error-message.component';
 import { PaginationComponent } from '../pagination/pagination/pagination.component';
 import { environment } from 'src/environments/environment.development';
+import { articleActions } from 'src/app/features/article/store/actions';
+import { FavouriteButtonComponent } from '../favourite-button/favourite-button.component';
+import { favorBtnActions } from '../favourite-button/store/actions';
 
 @Component({
   selector: 'app-feed',
@@ -31,6 +34,7 @@ import { environment } from 'src/environments/environment.development';
     LoadingComponent,
     ErrorMessageComponent,
     PaginationComponent,
+    FavouriteButtonComponent,
   ],
   templateUrl: './feed.component.html',
   styleUrls: ['./feed.component.scss'],
@@ -42,15 +46,16 @@ export class FeedComponent implements OnInit {
     error: this.store.select(selectError),
     feed: this.store.select(selectFeedData),
   });
-  selected = false;
+
   limit = environment.limit;
-  constructor(private store: Store) {}
+  constructor(private store: Store, private router: Router) {}
   ngOnInit(): void {
     console.log(this.apiUrl, 'apiurl');
     this.store.dispatch(feedActions.getFeed({ url: this.apiUrl }));
+    this.store.dispatch(favorBtnActions['favorButtonForFeed']());
   }
 
-  likePost() {
-    this.selected = !this.selected;
+  navigateToArticleDetail(slug: string) {
+    this.router.navigateByUrl('/article-detail/' + slug);
   }
 }

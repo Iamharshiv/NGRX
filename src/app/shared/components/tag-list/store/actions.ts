@@ -9,5 +9,8 @@ export const popularTagsActions = createActionGroup({
       popularTags: IpopularTag;
     }>(),
     'Get PopularTags failure': emptyProps(),
+    'Get Tag Chip': props<{
+      tag: string;
+    }>(),
   },
 });

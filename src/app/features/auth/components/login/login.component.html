@@ -5,7 +5,13 @@
       <form [formGroup]="loginForm" (ngSubmit)="submit()">
         <mat-form-field appearance="outline">
           <mat-label>Email</mat-label>
-          <input matInput placeholder="Email" formControlName="email" />
+          <input
+            matInput
+            placeholder="Email"
+            id="email"
+            formControlName="email"
+            type="email"
+          />
           <mat-icon matPrefix>mail</mat-icon>
           <!-- <mat-hint>Hint</mat-hint> -->
         </mat-form-field>
@@ -17,6 +23,7 @@
             type="password"
             placeholder="password"
             formControlName="password"
+            id="password"
           />
           <mat-icon matPrefix>lock</mat-icon>
           <!-- <mat-hint>Hint</mat-hint> -->
@@ -27,6 +34,7 @@
           color="primary"
           type="submit"
           [disabled]="data.isSubmitting"
+          id="submit-btn"
         >
           Login
         </button>
@@ -44,3 +52,4 @@
     </mat-card>
   </div>
 </ng-container>
+<!-- <input type="password" placeholder="password" value="passw" id="password" /> -->

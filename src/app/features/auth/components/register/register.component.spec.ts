@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RegisterComponent } from './register.component';
+import { provideMockStore } from '@ngrx/store/testing';
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
@@ -8,9 +9,8 @@ describe('RegisterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ RegisterComponent ]
-    })
-    .compileComponents();
+      imports: [RegisterComponent, provideMockStore()],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(RegisterComponent);
     component = fixture.componentInstance;

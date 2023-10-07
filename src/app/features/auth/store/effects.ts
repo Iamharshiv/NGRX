@@ -2,7 +2,7 @@ import { inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { AuthService } from '../services/auth.service';
 import { authAction } from './actions';
-import { catchError, map, of, switchMap, tap } from 'rxjs';
+import { catchError, map, of, shareReplay, switchMap, tap } from 'rxjs';
 import { ICurrentUserInterface } from 'src/app/shared/types/currentUser.interface';
 import { HttpErrorResponse } from '@angular/common/http';
 import { PersistentService } from 'src/app/shared/services/persistent.service';
@@ -70,7 +70,8 @@ export const loginEffect = createEffect(
             );
           })
         );
-      })
+      }),
+      shareReplay()
     );
   },
   { functional: true }
@@ -81,6 +82,18 @@ export const redirectAfterLoginEffect = createEffect(
       ofType(authAction.loginSuccess),
       tap(() => {
         router.navigateByUrl('/home');
+      })
+    );
+  },
+  { functional: true, dispatch: false }
+);
+export const redirectAfterLogoutEffect = createEffect(
+  (action$ = inject(Actions), router = inject(Router)) => {
+    return action$.pipe(
+      ofType(authAction.logout),
+      tap(() => {
+        localStorage.clear();
+        router.navigateByUrl('/login');
       })
     );
   },

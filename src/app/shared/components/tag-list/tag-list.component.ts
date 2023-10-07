@@ -41,6 +41,7 @@ export class TagListComponent implements OnInit {
     // [routerLink] = "['/tags', data]";
     console.log('navigate is working fine', data.value);
     // this.route.navigateByUrl('tags');
-    this.dynamicTab.next(data.value);
+    // this.dynamicTab.next(data.value);
+    this.store.dispatch(popularTagsActions.getTagChip({ tag: data.value }));
   }
 }

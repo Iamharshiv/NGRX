@@ -18,8 +18,13 @@ import { PaginationComponent } from 'src/app/shared/components/pagination/pagina
 import { environment } from 'src/environments/environment.development';
 import { TagListComponent } from 'src/app/shared/components/tag-list/tag-list.component';
 import { Store } from '@ngrx/store';
-import { selectCurrentUser } from 'src/app/features/auth/store/reducers';
+import {
+  selectCurrentUser,
+  selectIsLoading,
+} from 'src/app/features/auth/store/reducers';
 import { of, tap } from 'rxjs';
+import { selectIsLoadding } from 'src/app/shared/components/feed/store/reducers';
+import { selectTag } from 'src/app/shared/components/tag-list/store/reducers';
 @Component({
   selector: 'app-global-feed',
   standalone: true,
@@ -44,20 +49,21 @@ export class GlobalFeedComponent implements OnInit {
   params = '?limit=' + environment.limit + '&offset=' + 0;
   isCurrentUser$ = this.store.select(selectCurrentUser).pipe(
     tap((res) => {
+      console.log(res, 'response');
       // this.demo3Tab.selectedIndex = 0;
     })
   );
+  isContentLoaded$ = this.store.select(selectIsLoading);
+
+  seletedTag$ = this.store.select(selectTag).subscribe((res) => {
+    this.createDynamicTab(res);
+  });
   tabIndex = 0;
   tabsArray = [
     {
       name: 'Your Feed',
       url: 'articles/feed' + this.params,
       isLoggedIn: this.isCurrentUser$,
-    },
-    {
-      name: 'Global Feed',
-      url: 'articles' + this.params,
-      isLoggedIn: of({}),
     },
     {
       name: 'Global Feed',
@@ -91,5 +97,6 @@ export class GlobalFeedComponent implements OnInit {
   // }
   /**
    * !The tab is not behaving correctly need to fix this
+   * ? This has been fixed now.
    */
 }

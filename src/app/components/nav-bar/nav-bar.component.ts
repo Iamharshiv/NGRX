@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable, combineLatest } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
@@ -9,9 +9,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MaterialModule } from 'src/app/shared/material/material.module';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { selectCurrentUser } from 'src/app/features/auth/store/reducers';
+import { MatMenuModule } from '@angular/material/menu';
+import { authAction } from 'src/app/features/auth/store/actions';
 
 @Component({
   selector: 'app-nav-bar',
@@ -24,6 +26,7 @@ import { selectCurrentUser } from 'src/app/features/auth/store/reducers';
     MatToolbarModule,
     MaterialModule,
     RouterLink,
+    MatMenuModule,
   ],
 })
 export class NavBarComponent {
@@ -38,8 +41,13 @@ export class NavBarComponent {
   });
   constructor(
     private breakpointObserver: BreakpointObserver,
-    private store: Store
+    private store: Store,
+    private router: Router
   ) {}
 
-  logout() {}
+  logout() {
+    // let router = inject(Router);
+    this.store.dispatch(authAction.logout());
+    // this.router.navigateByUrl('/login');
+  }
 }

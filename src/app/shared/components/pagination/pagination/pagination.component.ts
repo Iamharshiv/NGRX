@@ -25,7 +25,7 @@ export class PaginationComponent implements OnInit {
   @Input() limit: number = 20;
   @Input() currentPage: number = 1;
   @Input() url: string = '';
-  @Output() handlePageOutputEvent = new EventEmitter();
+  // @Output() handlePageOutputEvent = new EventEmitter();
   pagesCount = 1;
   constructor(private store: Store) {}
   ngOnInit(): void {
@@ -36,7 +36,7 @@ export class PaginationComponent implements OnInit {
 
   handlePageEvent(e: PageEvent) {
     console.log(e);
-    this.handlePageOutputEvent.next(e);
+    // this.handlePageOutputEvent.next(e);
     let limit = environment.limit;
     limit = e.pageSize;
     let offset = e.pageIndex * limit;

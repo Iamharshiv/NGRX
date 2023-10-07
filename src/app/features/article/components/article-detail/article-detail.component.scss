@@ -1,0 +1,23 @@
+.article_detail_container {
+  .header_section {
+    background-color: #ebedfc;
+    padding: 20px;
+    .article_heading {
+      font-size: 25px;
+      font-weight: 700;
+      text-align: center;
+
+      .profile_section {
+        .profile_info {
+          display: flex;
+          flex-direction: row;
+          .image_container {
+            .thumbnail {
+              border-radius: 50%;
+            }
+          }
+        }
+      }
+    }
+  }
+}

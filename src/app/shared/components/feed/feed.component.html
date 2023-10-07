@@ -22,16 +22,10 @@
           </div>
         </div>
         <div>
-          <button
-            [ngClass]="article.favorited ? 'like-btn btn-selected' : 'like-btn'"
-            (click)="likePost()"
-          >
-            <mat-icon class="heart-icon">favorite</mat-icon>
-            {{ article.favoritesCount }}
-          </button>
+          <app-favourite-button></app-favourite-button>
         </div>
       </div>
-      <div [routerLink]="['/articles', article.slug]">
+      <div (click)="navigateToArticleDetail(article.slug)" class="hand">
         <h2>
           {{ article.title }}
         </h2>
@@ -40,7 +34,9 @@
         </p>
       </div>
       <div class="feed-footer">
-        <div>Read more...</div>
+        <div (click)="navigateToArticleDetail(article.slug)" class="hand">
+          Read more...
+        </div>
 
         <mat-chip-listbox aria-label="Fish selection">
           <mat-chip-option *ngFor="let t of article.tagList">{{

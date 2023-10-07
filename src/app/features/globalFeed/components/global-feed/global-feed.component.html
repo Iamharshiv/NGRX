@@ -1,6 +1,7 @@
 <app-banner></app-banner>
+
 <div class="gf-container">
-  <div class="inner-container">
+  <div class="inner-container" *ngIf="!(isContentLoaded$ | async)">
     <div class="tab-section">
       <mat-tab-group
         class="tab-section"
@@ -19,8 +20,9 @@
         </ng-container>
       </mat-tab-group>
     </div>
-
-    <app-tag-list (dynamicTab)="createDynamicTab($event)" />
+    <div class="tag-section">
+      <app-tag-list (dynamicTab)="createDynamicTab($event)" />
+    </div>
   </div>
 </div>
 <div class="footer"></div>

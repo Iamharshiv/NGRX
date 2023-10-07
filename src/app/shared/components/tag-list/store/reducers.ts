@@ -7,6 +7,7 @@ const initalState: IPopularTagResponseInterface = {
   isLoading: false,
   error: null,
   data: null,
+  tag: null,
 };
 
 const popularTagsFeature = createFeature({
@@ -25,6 +26,11 @@ const popularTagsFeature = createFeature({
     on(popularTagsActions.getPopularTagsFailure, (state) => ({
       ...state,
       isLoadding: false,
+    })),
+    on(popularTagsActions.getTagChip, (state, action) => ({
+      ...state,
+      isLoadding: true,
+      tag: action.tag,
     }))
     // on(routerNavigatedAction, () => initalState)
   ),
@@ -35,4 +41,5 @@ export const {
   selectIsLoading,
   selectError,
   selectData: selectTagsData,
+  selectTag,
 } = popularTagsFeature;

@@ -53,6 +53,7 @@
           mat-button
           class="example-icon favorite-icon"
           aria-label="Example icon-button with heart icon"
+          routerLink="/"
         >
           <mat-icon>home</mat-icon>
           Home
@@ -77,10 +78,15 @@
           mat-button
           class="example-icon"
           aria-label="Example icon-button with share icon"
+          [matMenuTriggerFor]="menu"
         >
           <mat-icon>account_circle</mat-icon>
           {{data.currentUser.username | titlecase}}
         </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="logout()">Logout</button>
+          <!-- <button mat-menu-item>Item 2</button> -->
+        </mat-menu>
       </ng-container>
     </mat-toolbar>
     <!-- Add Content Here -->

@@ -29,6 +29,10 @@ import {
   popularTagsReducer,
 } from './app/shared/components/tag-list/store/reducers';
 import { provideServiceWorker } from '@angular/service-worker';
+import {
+  favorButtonReducer,
+  favorButtonReducerKey,
+} from './app/shared/components/favourite-button/store/reducers';
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -39,6 +43,8 @@ bootstrapApplication(AppComponent, {
     provideState(authFeatureKey, authReducer),
     provideState(feedFeatureKey, feedReducer),
     provideState(popularTagsFeatureKey, popularTagsReducer),
+    provideState(favorButtonReducerKey, favorButtonReducer),
+
     provideEffects(authEffects, feedEffects, popularEffects),
     provideRouterStore(),
     provideStoreDevtools({
@@ -50,10 +56,6 @@ bootstrapApplication(AppComponent, {
     }),
     importProvidersFrom(BrowserAnimationsModule),
     provideHttpClient(withInterceptors([authInterceptor, loadingInterceptor])),
-    provideServiceWorker('ngsw-worker.js', {
-      enabled: !isDevMode(),
-      registrationStrategy: 'registerWhenStable:30000',
-    }),
     provideServiceWorker('ngsw-worker.js', {
       enabled: !isDevMode(),
       registrationStrategy: 'registerWhenStable:30000',

@@ -1,6 +1,6 @@
 .card-container {
   margin: 10px 0px;
-  padding: 10px 0px;
+  padding: 10px 10px;
   .card-title {
     display: flex;
     flex-direction: row;
@@ -27,43 +27,6 @@
       border-radius: 50%;
       height: 50px;
       width: 50px;
-    }
-    .like-btn {
-      border: 1.2px solid #4050b5;
-      padding: 8px 15px;
-      border-radius: 5px;
-      background-color: white;
-      display: flex;
-      align-items: center;
-      transition-duration: 0.2s;
-      .heart-icon {
-        color: #4050b5;
-        font-size: 22px;
-      }
-      &:hover {
-        background-color: #4050b5;
-        color: white;
-        cursor: pointer;
-        .heart-icon {
-          color: white;
-        }
-      }
-    }
-    .btn-selected {
-      background-color: #4050b5;
-      color: white;
-      .heart-icon {
-        color: white;
-        font-size: 22px;
-      }
-      &:hover {
-        background-color: rgb(60 72 151);
-        color: white;
-        cursor: pointer;
-        .heart-icon {
-          color: white;
-        }
-      }
     }
   }
   .feed-footer {

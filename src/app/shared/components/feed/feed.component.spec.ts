@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FeedComponent } from './feed.component';
+import { provideMockStore } from '@ngrx/store/testing';
 
 describe('FeedComponent', () => {
   let component: FeedComponent;
@@ -8,9 +9,8 @@ describe('FeedComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ FeedComponent ]
-    })
-    .compileComponents();
+      imports: [FeedComponent, provideMockStore()],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(FeedComponent);
     component = fixture.componentInstance;

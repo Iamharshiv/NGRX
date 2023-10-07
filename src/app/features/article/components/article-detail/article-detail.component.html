@@ -1,0 +1,40 @@
+<ng-container *ngIf="article$ | async as article">
+  <!-- {{ article | json }} -->
+  <div class="article_detail_container">
+    <div class="header_section">
+      <div class="article_heading">
+        {{ article.title }}
+      </div>
+      <div class="profile_section">
+        <div class="profile_info">
+          <div class="image_container">
+            <img
+              [src]="article.author.image"
+              alt="user_pic"
+              class="thumbnail"
+            />
+          </div>
+          <div class="profile_text">
+            <div class="user_name_text">{{ article.author.username }}</div>
+            <div class="feed_time">{{ article.createdAt }}</div>
+          </div>
+        </div>
+        <div class="follow_section"></div>
+        <div class="favorite_section"></div>
+      </div>
+    </div>
+
+    <div></div>
+    <div class="article_body"></div>
+  </div>
+</ng-container>
+
+<!-- 
+<ng-template #userprofile>
+  <div>This is picutre</div>
+  <div>This is name</div>
+  <div>This is age</div>
+</ng-template>
+<ng-container *ngTemplateOutlet="userprofile"></ng-container>
+
+<ng-container *ngTemplateOutlet="userprofile"> </ng-container> -->
