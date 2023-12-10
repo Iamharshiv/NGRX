@@ -4,7 +4,8 @@
   .inner-container {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    gap: 1rem;
+    // justify-content: space-around;
     .tab-section {
       flex: 2;
       //   display: flex;

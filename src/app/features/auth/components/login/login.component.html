@@ -35,13 +35,17 @@
           type="submit"
           [disabled]="data.isSubmitting"
           id="submit-btn"
+
         >
           Login
         </button>
-        <app-backend-error-messages
-          *ngIf="data.backendErrors"
-          [backendErrors]="data.backendErrors"
-        ></app-backend-error-messages>
+        <div class="error-container">
+
+          <app-backend-error-messages
+            *ngIf="data.backendErrors"
+            [backendErrors]="data.backendErrors"
+          ></app-backend-error-messages>
+        </div>
         <div>
           Don't have account?
           <span>
