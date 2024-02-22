@@ -47,7 +47,7 @@
       <mat-divider></mat-divider>
     </div>
 
-    <div *ngIf="!data.feed.articles.length">No Feeds</div>
+    <div class="empty-section" *ngIf="!data.feed.articles.length">No Feed</div>
   </div>
   <app-pagination
     [total]="data.feed!.articlesCount"

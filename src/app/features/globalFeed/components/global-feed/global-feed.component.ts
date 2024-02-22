@@ -11,7 +11,6 @@ import { FeedComponent } from 'src/app/shared/components/feed/feed.component';
 import { RouterOutlet } from '@angular/router';
 import { NavBarComponent } from 'src/app/components/nav-bar/nav-bar.component';
 import { MatTabGroup, MatTabsModule } from '@angular/material/tabs';
-import { MatChipsModule } from '@angular/material/chips';
 import { MatDividerModule } from '@angular/material/divider';
 import { BannerComponent } from 'src/app/shared/components/banner/banner.component';
 import { PaginationComponent } from 'src/app/shared/components/pagination/pagination/pagination.component';
@@ -55,9 +54,7 @@ export class GlobalFeedComponent implements OnInit {
   );
   isContentLoaded$ = this.store.select(selectIsLoading);
 
-  seletedTag$ = this.store.select(selectTag).subscribe((res) => {
-    this.createDynamicTab(res);
-  });
+ 
   tabIndex = 0;
   tabsArray = [
     {
@@ -71,6 +68,10 @@ export class GlobalFeedComponent implements OnInit {
       isLoggedIn: of({}),
     },
   ];
+  seletedTag$ = this.store.select(selectTag).subscribe((res) => {
+    console.log(res,'tabs')
+    this.createDynamicTab(res);
+  });
   constructor(private store: Store) {}
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
@@ -79,8 +80,9 @@ export class GlobalFeedComponent implements OnInit {
 
   createDynamicTab(data: any) {
     console.log(data, 'data loaded');
-    if (data == undefined) {
-      this.tabsArray.pop();
+    if (data == undefined || data == null) {
+      console.log(this.tabsArray,'tabs Array')
+      this.tabsArray.length = 2
       return;
     }
     this.tabsArray[2] = {

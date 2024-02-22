@@ -10,13 +10,12 @@ import { SpinnerService } from '../../services/spinner.service';
     <!-- <div class="loading-container">
       <mat-spinner></mat-spinner>
     </div> -->
-    <ngx-spinner type="fire"></ngx-spinner>
+    <ngx-spinner type="ball-scale"> Loading... </ngx-spinner>
   `,
 
   standalone: true,
   imports: [CommonModule, MatProgressSpinnerModule, NgxSpinnerModule],
-  styles: [
-    `
+  styles: `
       .loading-container {
         display: flex;
         flex-direction: row;
@@ -24,7 +23,6 @@ import { SpinnerService } from '../../services/spinner.service';
         position: absolute;
       }
     `,
-  ],
 })
 export class LoadingComponent {
   //   @Input() isLoading: boolean = false;
